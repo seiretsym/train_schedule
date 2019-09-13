@@ -15,21 +15,21 @@
       <div class="container">
 
         <!-- jumbotron for header -->
-        <div class="jumbotron text-center">
+        <div class="jumbotron bg-dark text-light text-center mb-3">
             <div class="container">
                 <h1 class="display-4">Personal Train Schedule</h1>
                 <p class="lead">Because Kerwin sucks at public transportation</p>
             </div>
         </div>
         <!-- card for current train schedule -->
-        <div class="card">
-            <div class="card-header">
+        <div class="card mb-3">
+            <div class="card-header bg-dark text-light">
                 Current Train Schedule
             </div>
             <div class="card-body">
                     <table class="table table-hover">
                         <thead>
-                            <tr>
+                            <tr class="bg-light">
                             <th scope="col">Train Name</th>
                             <th scope="col">Destination</th>
                             <th scope="col">Frequency</th>
@@ -44,7 +44,7 @@
         </div>
             <!-- card adding a train to the schedule -->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-dark text-light">
                 Add Train
             </div>
             <div class="card-body">
@@ -65,6 +65,7 @@
                         <label>Frequency (min)</label>
                         <input type="text" class="form-control" id="trainFrequency">
                     </div>
+                    <button type="submit" class="btn btn-dark" id="submitTrain">Submit</button>
                 </form>
             </div>
         </div>
