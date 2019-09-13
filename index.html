@@ -21,7 +21,56 @@
                 <p class="lead">Because Kerwin sucks at public transportation</p>
             </div>
         </div>
+        <!-- card for current train schedule -->
+        <div class="card">
+            <div class="card-header">
+                Current Train Schedule
+            </div>
+            <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Train Name</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Frequency</th>
+                            <th scope="col">Next Arrival</th>
+                            <th scope="col">Minutes Away</th>
+                            </tr>
+                        </thead>
+                        <tbody id="currentSchedule">
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+            <!-- card adding a train to the schedule -->
+        <div class="card">
+            <div class="card-header">
+                Add Train
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label>Train Name</label>
+                        <input type="text" class="form-control" id="trainName">
+                    </div>
+                    <div class="form-group">
+                        <label>Destination</label>
+                        <input type="text" class="form-control" id="trainDestination">
+                    </div>
+                    <div class="form-group">
+                        <label>First Train Time (HH:mm - military time)</label>
+                        <input type="text" class="form-control" id="firstTrainTime">
+                    </div>
+                    <div class="form-group">
+                        <label>Frequency (min)</label>
+                        <input type="text" class="form-control" id="trainFrequency">
+                    </div>
+                </form>
+            </div>
+        </div>
       </div>
+
+
     <!-- jQuery first, then derp, then moment JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="assets/js/derp.js"></script>
