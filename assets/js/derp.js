@@ -44,7 +44,28 @@ $(document).on("click", "#submitTrain", function() {
 db.ref().on("value", function(snapshot) {
     var trainName = snapshot.val().trainName,
         trainDestination = snapshot.val().trainDestination,
-        firstTrainTime = snapshot.val().firstTrainTime,
-        trainFrequency = snapshot.val().trainFrequency;
-        
+        firstTrainTime = moment(snapshot.val().firstTrainTime, "HH:mm").format("HH:mm"),
+        trainFrequency = parseInt(snapshot.val().trainFrequency);
+        var mins = moment.duration(firstTrainTime).as("minutes");
+
 })
+
+function getNextTrain(startTime, frequency, currentTime) {
+    var nextTrainTime = startTime + frequency;
+    if (nextTrainTime > currentTime) {
+        return nextTrainTime;
+    }
+    return getNextTrain(nextTrainTime, frequency, currentTime);
+}
+
+function convertTime(time) {
+    var hour = Math.floor(time / 60);
+    var minutes = time % 60;
+    if (hour < 10) {
+        hour = "0" + hour;
+    }
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    return (hour + ":" + minutes);
+}
