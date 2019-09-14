@@ -31,6 +31,28 @@ function submitTrain() {
     });
 }
 
+// get the next train time based off start time, frequency, and current time
+function getNextTrain(startTime, frequency, currentTime) {
+    var nextTrainTime = startTime + frequency;
+    if (nextTrainTime > currentTime) {
+        return nextTrainTime;
+    }
+    return getNextTrain(nextTrainTime, frequency, currentTime);
+}
+
+// convert time from minutes to military
+function convertTime(time) {
+    var hour = Math.floor(time / 60);
+    var minutes = time % 60;
+    if (hour < 10) {
+        hour = "0" + hour;
+    }
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    return (hour + ":" + minutes);
+}
+
 // submit button click event listener
 $(document).on("click", "#submitTrain", function() {
     // prevent page refresh
@@ -49,23 +71,3 @@ db.ref().on("value", function(snapshot) {
         var mins = moment.duration(firstTrainTime).as("minutes");
 
 })
-
-function getNextTrain(startTime, frequency, currentTime) {
-    var nextTrainTime = startTime + frequency;
-    if (nextTrainTime > currentTime) {
-        return nextTrainTime;
-    }
-    return getNextTrain(nextTrainTime, frequency, currentTime);
-}
-
-function convertTime(time) {
-    var hour = Math.floor(time / 60);
-    var minutes = time % 60;
-    if (hour < 10) {
-        hour = "0" + hour;
-    }
-    if (minutes < 10) {
-        minutes = "0" + minutes;
-    }
-    return (hour + ":" + minutes);
-}
