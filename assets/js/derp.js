@@ -78,8 +78,8 @@ function getNextTrain(startTime, frequency, currentTime) {
 
 // convert time from minutes to military
 function convertTime(time) {
-    var hour = Math.floor(time / 60);
-    var minutes = time % 60;
+    var hour = Math.floor(time / 60),
+        minutes = time % 60;
     if (hour < 10) {
         hour = "0" + hour;
     }
@@ -110,17 +110,17 @@ db.ref().on("child_added", function(snapshot) {
     // get next train time
 
         // get current time
-        var currentTime = moment().format("HH:mm");
+        var currentTime = moment().format("HH:mm"),
 
         // convert times to minutes
-        var fttInMinutes = moment.duration(firstTrainTime).as("minutes");
-        var ctInMinutes = moment.duration(currentTime).as("minutes");
+            fttInMinutes = moment.duration(firstTrainTime).as("minutes"),
+            ctInMinutes = moment.duration(currentTime).as("minutes"),
 
         // get that time
-        var nextTrainTime = getNextTrain(fttInMinutes, trainFrequency, ctInMinutes);
+            nextTrainTime = getNextTrain(fttInMinutes, trainFrequency, ctInMinutes),
 
         // get time until next train
-        var minutesAway = nextTrainTime - ctInMinutes;
+            minutesAway = nextTrainTime - ctInMinutes;
 
         // convert nextTrainTime to AM:PM
         nextTrainTime = convertTime(nextTrainTime);
@@ -129,17 +129,13 @@ db.ref().on("child_added", function(snapshot) {
     // append data current train schedule
 
         // create table row
-        var tr = $("<tr>");
+        var tr = $("<tr>"),
 
         // create table columns
-        var thName = $("<td>").append(trainName);
-        console.log(thName);
-        var thDestination = $("<td>").append(trainDestination);
-        console.log(thDestination);
-        var thFrequency = $("<td>").append(trainFrequency);
-        console.log(thFrequency);
-        var thNextTrain = $("<td>").append(nextTrainTime);
-        console.log(thNextTrain);
+            thName = $("<td>").append(trainName),
+            thDestination = $("<td>").append(trainDestination),
+            thFrequency = $("<td>").append(trainFrequency),
+            thNextTrain = $("<td>").append(nextTrainTime);
 
         // if minutes away = 0 then do something funny
         if (minutesAway === 0) {
@@ -149,7 +145,6 @@ db.ref().on("child_added", function(snapshot) {
         else {
             var thMinutesAway = $("<td>").append(minutesAway);
         }
-        console.log(thMinutesAway);
 
         // append columns to row
         tr.append(thName, thDestination, thFrequency, thNextTrain, thMinutesAway);
