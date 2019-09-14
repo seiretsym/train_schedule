@@ -64,7 +64,7 @@ $(document).on("click", "#submitTrain", function() {
 
 //// change this to push so it can store/get multiple trains
 // event listener to check database for changes
-db.ref().on("value", function(snapshot) {
+db.ref().on("child_added", function(snapshot) {
     // store database values into variables
     var trainName = snapshot.val().trainName,
         trainDestination = snapshot.val().trainDestination,
