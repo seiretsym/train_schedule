@@ -39,3 +39,12 @@ $(document).on("click", "#submitTrain", function() {
     // submit train input values
     submitTrain();
 })
+
+// event listener to check database for changes
+db.ref().on("value", function(snapshot) {
+    var trainName = snapshot.val().trainName,
+        trainDestination = snapshot.val().trainDestination,
+        firstTrainTime = snapshot.val().firstTrainTime,
+        trainFrequency = snapshot.val().trainFrequency;
+        
+})
