@@ -77,7 +77,7 @@ db.ref().on("child_added", function(snapshot) {
 ```
 
 ## Links
-Live Page: https://seiretsym.github.io/train_scheduler<br>
-Repo: https://github.com/seiretsym/train_scheduler<br>
+Live Page: https://seiretsym.github.io/train_schedule<br>
+Repo: https://github.com/seiretsym/train_schedule<br>
 LinkedIn: https://www.linkedin.com/in/kerwinhy/<br>
 GitHub: https://github.com/seiretsym<br>
