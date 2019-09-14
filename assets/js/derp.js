@@ -83,11 +83,32 @@ db.ref().on("value", function(snapshot) {
         var nextTrainTime = getNextTrain(fttInMinutes, trainFrequency, ctInMinutes);
 
         // get time until next train
-        var timeUntilNext = nextTrainTime - ctInMinutes;
+        var minutesAway = nextTrainTime - ctInMinutes;
 
-        // convert nextTrainTime from minutes to military time
+        // convert nextTrainTime to AM:PM
         nextTrainTime = convertTime(nextTrainTime);
+        nextTrainTime = moment(nextTrainTime, "HH:mm").format("h:mm a");
 
     // append data current train schedule
 
+            // create table row
+            var tr = $("<tr>");
+
+            // create table columns
+            var thName = $("<td>").append(trainName);
+            console.log(thName);
+            var thDestination = $("<td>").append(trainDestination);
+            console.log(thDestination);
+            var thFrequency = $("<td>").append(trainFrequency);
+            console.log(thFrequency);
+            var thNextTrain = $("<td>").append(nextTrainTime);
+            console.log(thNextTrain);
+            var thMinutesAway = $("<td>").append(minutesAway);
+            console.log(thMinutesAway);
+
+            // append columns to row
+            tr.append(thName, thDestination, thFrequency, thNextTrain, thMinutesAway);
+
+            // append row to table in index.html
+            $("#currentSchedule").append(tr);
 })
