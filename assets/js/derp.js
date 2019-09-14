@@ -37,6 +37,12 @@ function getNextTrain(startTime, frequency, currentTime) {
     if (nextTrainTime > currentTime) {
         return nextTrainTime;
     }
+    // if next train time is now
+    else if {
+        (nextTrainTime === currentTime) {
+            return nextTrainTime;
+        }
+    }
     return getNextTrain(nextTrainTime, frequency, currentTime);
 }
 
