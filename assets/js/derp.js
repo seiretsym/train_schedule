@@ -157,4 +157,8 @@ db.ref().on("child_added", function(snapshot) {
 
         // append row to table in index.html
         $("#currentSchedule").append(tr);
+
+   // error logging!
+}, function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
 })
