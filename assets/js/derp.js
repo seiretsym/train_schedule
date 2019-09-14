@@ -128,32 +128,32 @@ db.ref().on("child_added", function(snapshot) {
 
     // append data current train schedule
 
-            // create table row
-            var tr = $("<tr>");
+        // create table row
+        var tr = $("<tr>");
 
-            // create table columns
-            var thName = $("<td>").append(trainName);
-            console.log(thName);
-            var thDestination = $("<td>").append(trainDestination);
-            console.log(thDestination);
-            var thFrequency = $("<td>").append(trainFrequency);
-            console.log(thFrequency);
-            var thNextTrain = $("<td>").append(nextTrainTime);
-            console.log(thNextTrain);
+        // create table columns
+        var thName = $("<td>").append(trainName);
+        console.log(thName);
+        var thDestination = $("<td>").append(trainDestination);
+        console.log(thDestination);
+        var thFrequency = $("<td>").append(trainFrequency);
+        console.log(thFrequency);
+        var thNextTrain = $("<td>").append(nextTrainTime);
+        console.log(thNextTrain);
 
-            // if minutes away = 0 then do something funny
-            if (minutesAway === 0) {
-                var thMinutesAway = $("<td>").append("NOW! MOVE IT!")
-            }
-            // otherwise set it to the time
-            else {
-                var thMinutesAway = $("<td>").append(minutesAway);
-            }
-            console.log(thMinutesAway);
+        // if minutes away = 0 then do something funny
+        if (minutesAway === 0) {
+            var thMinutesAway = $("<td>").append("NOW! MOVE IT!")
+        }
+        // otherwise set it to the time
+        else {
+            var thMinutesAway = $("<td>").append(minutesAway);
+        }
+        console.log(thMinutesAway);
 
-            // append columns to row
-            tr.append(thName, thDestination, thFrequency, thNextTrain, thMinutesAway);
+        // append columns to row
+        tr.append(thName, thDestination, thFrequency, thNextTrain, thMinutesAway);
 
-            // append row to table in index.html
-            $("#currentSchedule").append(tr);
+        // append row to table in index.html
+        $("#currentSchedule").append(tr);
 })
