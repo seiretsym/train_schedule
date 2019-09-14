@@ -22,15 +22,12 @@ function submitTrain() {
         $("#lbl1").html("Train Name (This can't be empty!)");
     }
     else if ($("#trainDestination").val() === "") {
-        // let user know it can't be empty
         $("#lbl2").html("Destination (This can't be empty!)");
     }
     else if ($("#firstTrainTime").val() === "") {
-        // let user know it can't be empty
         $("#lbl3").html("First Train Time (HH:MM AM/PM) (This can't be empty!)");
     }
     else if ($("#trainFrequency").val() === "") {
-        // let user know it can't be empty
         $("#lbl4").html("Frequency (in minutes) (This can't be empty!)");
     }
     else {
@@ -66,13 +63,16 @@ function submitTrain() {
 function getNextTrain(startTime, frequency, currentTime) {
     var nextTrainTime = startTime + frequency;
     if (nextTrainTime > currentTime) {
+        // return next train time and stop function recursion
         return nextTrainTime;
     }
     // if next train time is now
     else if (nextTrainTime === currentTime) {
+        // return next train time and stop function recursion
         return nextTrainTime;
     }
 
+    // recursive function to avoid using a for loop
     return getNextTrain(nextTrainTime, frequency, currentTime);
 }
 
@@ -80,13 +80,27 @@ function getNextTrain(startTime, frequency, currentTime) {
 function convertTime(time) {
     var hour = Math.floor(time / 60),
         minutes = time % 60;
+
+    // convert to 0h if less than 10
     if (hour < 10) {
         hour = "0" + hour;
     }
+    
+    // convert to 0m if less than 10
     if (minutes < 10) {
         minutes = "0" + minutes;
     }
-    return (hour + ":" + minutes);
+
+    // get am/pm format
+    if (hour > 12) {
+        var ampm = "pm";
+    }
+    else {
+        var ampm = "am";
+    }
+
+    // return in hh:mm am/pm format
+    return (hour + ":" + minutes + " " + ampm);
 }
 
 // submit button click event listener
@@ -121,9 +135,8 @@ db.ref().on("child_added", function(snapshot) {
         // get time until next train
             minutesAway = nextTrainTime - ctInMinutes;
 
-        // convert nextTrainTime to AM:PM
+        // convert nextTrainTime to HH:MM am/pm
         nextTrainTime = convertTime(nextTrainTime);
-        nextTrainTime = moment(nextTrainTime, "HH:mm").format("h:mm a");
 
     // append data current train schedule
 
