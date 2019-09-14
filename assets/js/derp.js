@@ -91,16 +91,8 @@ function convertTime(time) {
         minutes = "0" + minutes;
     }
 
-    // get am/pm format
-    if (hour > 12) {
-        var ampm = "pm";
-    }
-    else {
-        var ampm = "am";
-    }
-
     // return in hh:mm am/pm format
-    return (hour + ":" + minutes + " " + ampm);
+    return (hour + ":" + minutes);
 }
 
 // submit button click event listener
@@ -135,8 +127,10 @@ db.ref().on("child_added", function(snapshot) {
         // get time until next train
             minutesAway = nextTrainTime - ctInMinutes;
 
-        // convert nextTrainTime to HH:MM am/pm
+        // convert nextTrainTime to HH:MM
         nextTrainTime = convertTime(nextTrainTime);
+        // format to H/MM am/pm
+        nextTrainTime = moment(nextTrainTime, "HH:mm").format("h:mm a");
 
     // append data current train schedule
 
