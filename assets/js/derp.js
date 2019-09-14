@@ -72,8 +72,22 @@ db.ref().on("value", function(snapshot) {
 
     // get next train time
 
-    // get time until next train
+        // get current time
+        var currentTime = moment().format("HH:mm");
+
+        // convert times to minutes
+        var fttInMinutes = moment.duration(firstTrainTime).as("minutes");
+        var ctInMinutes = moment.duration(currentTime).as("minutes");
+
+        // get that time
+        var nextTrainTime = getNextTrain(fttInMinutes, trainFrequency, ctInMinutes);
+
+        // get time until next train
+        var timeUntilNext = nextTrainTime - ctInMinutes;
+
+        // convert nextTrainTime from minutes to military time
+        nextTrainTime = convertTime(nextTrainTime);
 
     // append data current train schedule
-    
+
 })
