@@ -42,10 +42,10 @@ function submitTrain() {
 
         // store values into database
         db.ref().push({
-        trainName: trainName,
-        trainDestination: trainDestination,
-        firstTrainTime: firstTrainTime,
-        trainFrequency: trainFrequency
+            trainName: trainName,
+            trainDestination: trainDestination,
+            firstTrainTime: firstTrainTime,
+            trainFrequency: trainFrequency
         });
 
         // clear input values
@@ -98,7 +98,6 @@ $(document).on("click", "#submitTrain", function() {
     submitTrain();
 })
 
-//// change this to push so it can store/get multiple trains
 // event listener to check database for changes
 db.ref().on("child_added", function(snapshot) {
     // store database values into variables
