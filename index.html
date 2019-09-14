@@ -58,12 +58,12 @@
                         <input type="text" class="form-control" id="trainDestination">
                     </div>
                     <div class="form-group">
-                        <label>First Train Time (HH:mm - military time)</label>
-                        <input type="text" class="form-control" id="firstTrainTime">
+                        <label>First Train Time (HH:mm AM/PM)</label>
+                        <input type="time" class="form-control" id="firstTrainTime">
                     </div>
                     <div class="form-group">
                         <label>Frequency (min)</label>
-                        <input type="text" class="form-control" id="trainFrequency">
+                        <input type="number" class="form-control" id="trainFrequency">
                     </div>
                     <button type="submit" class="btn btn-dark" id="submitTrain">Submit</button>
                 </form>
@@ -72,9 +72,13 @@
       </div>
 
 
-    <!-- jQuery first, then derp, then moment JS -->
+    <!-- jQuery first, then derp, then moment, then firebase JS -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+    <script src="assets/js/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="assets/js/derp.js"></script>
-    <script src="assets/js/moment.min.js"></script>
-</body>
+
+    
+  </body>
 </html>
