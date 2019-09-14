@@ -16,19 +16,50 @@ var db = firebase.database();
 
 // function to submit new train info to database
 function submitTrain() {
-    // grab input values
-    var trainName = $("#trainName").val().trim(),
-        trainDestination = $("#trainDestination").val().trim(),
-        firstTrainTime = $("#firstTrainTime").val().trim(),
-        trainFrequency = $("#trainFrequency").val().trim();
+    // check if input values are empty
+    if ($("#trainName").val() === "") {
+        // let user know it can't be empty
+        $("#lbl1").html("Train Name (This can't be empty!)");
+    }
+    else if ($("#trainDestination").val() === "") {
+        // let user know it can't be empty
+        $("#lbl2").html("Destination (This can't be empty!)");
+    }
+    else if ($("#firstTrainTime").val() === "") {
+        // let user know it can't be empty
+        $("#lbl3").html("First Train Time (HH:MM AM/PM) (This can't be empty!)");
+    }
+    else if ($("#trainFrequency").val() === "") {
+        // let user know it can't be empty
+        $("#lbl4").html("Frequency (in minutes) (This can't be empty!)");
+    }
+    else {
+        // grab input values
+        var trainName = $("#trainName").val().trim(),
+            trainFrequency = $("#trainFrequency").val().trim(),
+            firstTrainTime = $("#firstTrainTime").val().trim(),
+            trainDestination = $("#trainDestination").val().trim();
 
-    // store values into database
-    db.ref().push({
+        // store values into database
+        db.ref().push({
         trainName: trainName,
         trainDestination: trainDestination,
         firstTrainTime: firstTrainTime,
         trainFrequency: trainFrequency
-    });
+        });
+
+        // clear input values
+        $("#trainName").val("");
+        $("#trainDestination").val("");
+        $("#firstTrainTime").val("");
+        $("#trainFrequency").val("");
+
+        // reset labels to default
+        $("#lbl1").html("Train Name");
+        $("#lbl2").html("Destination");
+        $("#lbl3").html("First Train Time (HH:MM AM/PM)");
+        $("#lbl4").html("Frequency (in minutes)");
+    }
 }
 
 // get the next train time based off start time, frequency, and current time
@@ -41,7 +72,7 @@ function getNextTrain(startTime, frequency, currentTime) {
     else if (nextTrainTime === currentTime) {
         return nextTrainTime;
     }
-    
+
     return getNextTrain(nextTrainTime, frequency, currentTime);
 }
 
