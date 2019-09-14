@@ -23,7 +23,7 @@ function submitTrain() {
         trainFrequency = $("#trainFrequency").val().trim();
 
     // store values into database
-    db.ref().set({
+    db.ref().push({
         trainName: trainName,
         trainDestination: trainDestination,
         firstTrainTime: firstTrainTime,
@@ -62,6 +62,7 @@ $(document).on("click", "#submitTrain", function() {
     submitTrain();
 })
 
+//// change this to push so it can store/get multiple trains
 // event listener to check database for changes
 db.ref().on("value", function(snapshot) {
     // store database values into variables
