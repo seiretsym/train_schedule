@@ -16,7 +16,11 @@ var db = firebase.database();
 
 // function to submit new train info to database
 function submitTrain() {
-
+    // grab input values
+    var trainName = $("#trainName").val().trim(),
+        trainDestination = $("#trainDestination").val().trim(),
+        firstTrainTime = $("#firstTrainTime").val().trim(),
+        trainFrequency = $("#trainFrequency").val().trim();
 }
 
 // submit button click event listener
