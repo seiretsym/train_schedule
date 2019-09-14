@@ -21,6 +21,14 @@ function submitTrain() {
         trainDestination = $("#trainDestination").val().trim(),
         firstTrainTime = $("#firstTrainTime").val().trim(),
         trainFrequency = $("#trainFrequency").val().trim();
+
+    // store values into database
+    db.ref().set({
+        trainName: trainName,
+        trainDestination: trainDestination,
+        firstTrainTime: firstTrainTime,
+        trainFrequency: trainFrequency
+    });
 }
 
 // submit button click event listener
