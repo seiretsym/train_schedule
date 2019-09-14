@@ -68,6 +68,5 @@ db.ref().on("value", function(snapshot) {
         trainDestination = snapshot.val().trainDestination,
         firstTrainTime = moment(snapshot.val().firstTrainTime, "HH:mm").format("HH:mm"),
         trainFrequency = parseInt(snapshot.val().trainFrequency);
-        var mins = moment.duration(firstTrainTime).as("minutes");
 
 })
