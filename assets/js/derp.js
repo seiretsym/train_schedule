@@ -64,9 +64,16 @@ $(document).on("click", "#submitTrain", function() {
 
 // event listener to check database for changes
 db.ref().on("value", function(snapshot) {
+    // store database values into variables
     var trainName = snapshot.val().trainName,
         trainDestination = snapshot.val().trainDestination,
         firstTrainTime = moment(snapshot.val().firstTrainTime, "HH:mm").format("HH:mm"),
         trainFrequency = parseInt(snapshot.val().trainFrequency);
 
+    // get next train time
+
+    // get time until next train
+
+    // append data current train schedule
+    
 })
