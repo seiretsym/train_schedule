@@ -110,7 +110,15 @@ db.ref().on("child_added", function(snapshot) {
             console.log(thFrequency);
             var thNextTrain = $("<td>").append(nextTrainTime);
             console.log(thNextTrain);
-            var thMinutesAway = $("<td>").append(minutesAway);
+
+            // if minutes away = 0 then do something funny
+            if (minutesAway === 0) {
+                var thMinutesAway = $("<td>").append("NOW! MOVE IT!")
+            }
+            // otherwise set it to the time
+            else {
+                var thMinutesAway = $("<td>").append(minutesAway);
+            }
             console.log(thMinutesAway);
 
             // append columns to row
